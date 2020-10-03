@@ -2,6 +2,7 @@
 
 namespace Authenticator\Domain;
 
-interface CodeGenerator {
+interface CodeGenerator
+{
     public function generate(): string;
 }

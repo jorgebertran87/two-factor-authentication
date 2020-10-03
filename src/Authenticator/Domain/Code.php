@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Authenticator\Domain;
 
-final class Code {
+final class Code
+{
     public function __construct(CodeGenerator $codeGenerator)
     {
         $this->value = $codeGenerator->generate();

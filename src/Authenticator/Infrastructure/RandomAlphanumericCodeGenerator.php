@@ -6,8 +6,8 @@ namespace Authenticator\Infrastructure;
 
 use Authenticator\Domain\CodeGenerator;
 
-final class RandomAlphanumericCodeGenerator implements CodeGenerator {
-
+final class RandomAlphanumericCodeGenerator implements CodeGenerator
+{
     public const LENGTH = 4;
 
     private const PERMITTED_CHARS = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
