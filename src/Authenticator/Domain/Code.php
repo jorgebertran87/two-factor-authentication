@@ -13,8 +13,16 @@ final class Code
 
     public function __construct(string $value, DateTimeImmutable $generatedAt)
     {
+        if (!$this->isAlphanumeric($value)) {
+            throw  InvalidAlphanumericFormatException::create($value);
+        }
+
         $this->value = $value;
         $this->generatedAt = $generatedAt;
+    }
+
+    private function isAlphanumeric(string $value): bool {
+        return ctype_alnum($value);
     }
 
     public function value(): string
