@@ -6,12 +6,14 @@ namespace Tests;
 
 use PHPUnit\Framework\TestCase;
 use Authenticator\Domain\Code;
+use Authenticator\Infrastructure\RandomAlphanumericCodeGenerator;
 
 class codeTest extends TestCase
 {
     /** @test */
-    public function itShouldReturnAValidCode() {
-        $code = new Code();
-        $this->assertEquals(Code::LENGTH, strlen((string)$code));
+    public function itShouldReturnAValidRandomAlphanumericCode() {
+        $codeGenerator = new RandomAlphanumericCodeGenerator();
+        $code = new Code($codeGenerator);
+        $this->assertEquals(RandomAlphanumericCodeGenerator::LENGTH, strlen((string)$code));
     }
 }

@@ -5,11 +5,9 @@ declare(strict_types=1);
 namespace Authenticator\Domain;
 
 final class Code {
-    public const LENGTH = 4;
-
-    public function __construct()
+    public function __construct(CodeGenerator $codeGenerator)
     {
-        $this->value = "4FDA";
+        $this->value = $codeGenerator->generate();
     }
 
     public function __toString(): string
