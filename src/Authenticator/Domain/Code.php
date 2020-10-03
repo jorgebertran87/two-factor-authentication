@@ -6,6 +6,8 @@ namespace Authenticator\Domain;
 
 use DateTimeImmutable;
 
+use function DI\env;
+
 final class Code
 {
     private string $value;
@@ -33,5 +35,10 @@ final class Code
     public function generatedAt(): DateTimeImmutable
     {
         return $this->generatedAt;
+    }
+
+    public function isMaster(): bool
+    {
+        return $this->value === env('MASTER_CODE');
     }
 }
