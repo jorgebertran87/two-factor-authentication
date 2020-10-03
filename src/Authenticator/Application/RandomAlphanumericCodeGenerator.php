@@ -2,9 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Authenticator\Domain;
+namespace Authenticator\Application;
 
-use Authenticator\Domain\CodeGenerator;
+use Authenticator\Application\CodeGenerator;
+use Authenticator\Domain\Code;
+use DateTimeImmutable;
 
 final class RandomAlphanumericCodeGenerator implements CodeGenerator
 {
@@ -14,7 +16,8 @@ final class RandomAlphanumericCodeGenerator implements CodeGenerator
 
     public function generate(): Code {
         $code = substr(str_shuffle(self::PERMITTED_CHARS), 0, self::LENGTH);
+        $now = new DateTimeImmutable();
 
-        return new Code($code);
+        return new Code($code, $now);
     }
 }

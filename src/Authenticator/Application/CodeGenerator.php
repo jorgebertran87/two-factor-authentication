@@ -1,6 +1,8 @@
 <?php
 
-namespace Authenticator\Domain;
+namespace Authenticator\Application;
+
+use Authenticator\Domain\Code;
 
 interface CodeGenerator
 {
