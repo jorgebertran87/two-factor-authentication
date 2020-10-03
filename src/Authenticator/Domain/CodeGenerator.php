@@ -4,5 +4,5 @@ namespace Authenticator\Domain;
 
 interface CodeGenerator
 {
-    public function generate(): string;
+    public function generate(): Code;
 }

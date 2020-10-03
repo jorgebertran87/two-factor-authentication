@@ -2,10 +2,10 @@
 
 declare(strict_types = 1);
 
-namespace Tests\Authenticator\Infrastructure;
+namespace Tests\Authenticator\Domain;
 
+use Authenticator\Domain\RandomAlphanumericCodeGenerator;
 use PHPUnit\Framework\TestCase;
-use Authenticator\Infrastructure\RandomAlphanumericCodeGenerator;
 
 class RandomAlphanumericCodeGeneratorTest extends TestCase
 {
@@ -13,6 +13,6 @@ class RandomAlphanumericCodeGeneratorTest extends TestCase
     public function itShouldGenerateAValidRandomAlphanumericCode() {
         $codeGenerator = new RandomAlphanumericCodeGenerator();
         $code = $codeGenerator->generate();
-        $this->assertEquals(RandomAlphanumericCodeGenerator::LENGTH, strlen($code));
+        $this->assertEquals(RandomAlphanumericCodeGenerator::LENGTH, strlen((string)$code));
     }
 }

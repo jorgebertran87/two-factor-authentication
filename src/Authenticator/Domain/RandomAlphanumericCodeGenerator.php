@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Authenticator\Infrastructure;
+namespace Authenticator\Domain;
 
 use Authenticator\Domain\CodeGenerator;
 
@@ -12,7 +12,9 @@ final class RandomAlphanumericCodeGenerator implements CodeGenerator
 
     private const PERMITTED_CHARS = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
-    public function generate(): string {
-        return substr(str_shuffle(self::PERMITTED_CHARS), 0, self::LENGTH);
+    public function generate(): Code {
+        $code = substr(str_shuffle(self::PERMITTED_CHARS), 0, self::LENGTH);
+
+        return new Code($code);
     }
 }

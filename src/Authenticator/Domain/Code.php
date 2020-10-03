@@ -6,9 +6,9 @@ namespace Authenticator\Domain;
 
 final class Code
 {
-    public function __construct(CodeGenerator $codeGenerator)
+    public function __construct(string $value)
     {
-        $this->value = $codeGenerator->generate();
+        $this->value = $value;
     }
 
     public function __toString(): string
