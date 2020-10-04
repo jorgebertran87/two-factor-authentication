@@ -22,8 +22,12 @@ COPY --from=composer /usr/bin/composer /usr/bin/composer
 
 CMD ["php-fpm", "-F"]
 
+WORKDIR /var/www
+
 USER 1000:1000
 
-WORKDIR /var/www
+COPY . .
+
+USER root:root
 
 EXPOSE 9000

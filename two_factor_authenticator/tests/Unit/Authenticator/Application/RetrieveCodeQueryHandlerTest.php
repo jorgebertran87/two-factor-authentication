@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Tests\Authenticator\Application;
+namespace Tests\Unit\Authenticator\Application;
 
 use App\Authenticator\Application\RandomAlphanumericCodeGenerator;
 use App\Authenticator\Application\RetrieveCodeQueryHandler;
