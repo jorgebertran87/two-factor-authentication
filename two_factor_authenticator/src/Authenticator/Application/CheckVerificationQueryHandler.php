@@ -32,6 +32,9 @@ final class CheckVerificationQueryHandler implements QueryHandler
         }
 
         $verification = $this->verificationReadRepository->findByIdAndCode($query->id(), $code->value());
+        if (null === $verification) {
+            throw CodeNotFoundException::create($query->code());
+        }
         $code = $verification->code();
         $this->codeValidator->validate($code);
 
