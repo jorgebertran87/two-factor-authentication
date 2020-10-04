@@ -6,35 +6,27 @@ namespace App\Authenticator\Application;
 
 use DI\ContainerBuilder;
 use Exception;
+use Reflection;
+use ReflectionClass;
+use Symfony\Component\DependencyInjection\Argument\ServiceLocator;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Throwable;
 
 class QueryBus
 {
-    protected $container;
+    private ContainerInterface $container;
 
-    /** @throws Exception */
-    public function __construct()
+    public function __construct( ContainerInterface $container)
     {
-        $builder = new ContainerBuilder();
-        $builder->useAutowiring(true);
-        $builder->useAnnotations(false);
-        $builder->addDefinitions($_ENV['DI_PATH']);
-
-        $this->container = $builder->build();
+        $this->container = $container;
     }
 
-    /**
-     * @return mixed
-     * @throws QueryException
-     */
+    /** @return mixed*/
     public function handle($query)
     {
-        $handlerClass = get_class($query).'Handler';
-        try {
-            $handler = $this->container->get($handlerClass);
-            return $handler->handle($query);
-        } catch(Throwable $e) {
-            throw QueryException::fromQuery(get_class($query), $e);
-        }
+        $handlerClassName = (new ReflectionClass($query))->getShortName();
+        $handlerClass = $handlerClassName.'Handler';
+        $handler = $this->container->get($handlerClass);
+        return $handler->handle($query);
     }
 }
