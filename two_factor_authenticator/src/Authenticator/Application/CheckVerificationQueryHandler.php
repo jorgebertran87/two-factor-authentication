@@ -10,13 +10,16 @@ use DateTimeImmutable;
 final class CheckVerificationQueryHandler implements QueryHandler
 {
     private VerificationReadRepository $verificationReadRepository;
+    private VerificationWriteRepository $verificationWriteRepository;
     private CodeValidator $codeValidator;
 
     public function __construct(
         VerificationReadRepository $verificationReadRepository,
+        VerificationWriteRepository $verificationWriteRepository,
         CodeValidator $codeValidator
     ) {
         $this->verificationReadRepository = $verificationReadRepository;
+        $this->verificationWriteRepository = $verificationWriteRepository;
         $this->codeValidator = $codeValidator;
 
     }
@@ -35,6 +38,8 @@ final class CheckVerificationQueryHandler implements QueryHandler
         if (null === $verification) {
             throw CodeNotFoundException::create($query->code());
         }
+
+        $this->verificationWriteRepository->markAsUsed($verification);
         $code = $verification->code();
         $this->codeValidator->validate($code);
 

@@ -31,6 +31,11 @@ class Verification
      */
     private $phoneNumber;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $used;
+
     public function getId(): ?string
     {
         return $this->id;
@@ -77,5 +82,17 @@ class Verification
         $this->phoneNumber = $phoneNumber;
 
         return $this;
+    }
+
+    public function setUsed(bool $used): self
+    {
+        $this->used = $used;
+
+        return $this;
+    }
+
+    public function getUsed(): ?bool
+    {
+        return $this->used;
     }
 }

@@ -49,7 +49,7 @@ class CheckVerificationCommand extends Command
             $output->writeln($verification ? 'You have access!' : self::OUTPUT_ACCESS_DENIED);
             return Command::SUCCESS;
         } catch (\Exception $e) {
-            $output->writeln(self::OUTPUT_ACCESS_DENIED);
+            $output->writeln($e->getMessage());
         }
 
         return Command::FAILURE;

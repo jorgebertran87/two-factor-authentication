@@ -30,6 +30,7 @@ class VerificationRepository extends ServiceEntityRepository implements Verifica
     {
         $result =  $this->createQueryBuilder('v')
             ->andWhere('v.id = :id')
+            ->andWhere('v.used IS NULL')
             ->setParameter('id', $id)
             ->orderBy('v.generatedAt', 'DESC')
             ->setMaxResults(1)
@@ -44,6 +45,7 @@ class VerificationRepository extends ServiceEntityRepository implements Verifica
         $result =  $this->createQueryBuilder('v')
             ->andWhere('v.id = :id')
             ->andWhere('v.code = :code')
+            ->andWhere('v.used IS NULL')
             ->setParameter('id', $id)
             ->setParameter('code', $code)
             ->orderBy('v.generatedAt', 'DESC')
@@ -77,5 +79,16 @@ class VerificationRepository extends ServiceEntityRepository implements Verifica
 
         $this->getEntityManager()->persist($verificationEntity);
         $this->getEntityManager()->flush();
+    }
+
+    public function markAsUsed(DomainVerification $verification): void
+    {
+        $this->createQueryBuilder('v')
+            ->update(Verification::class, 'v')
+            ->set('v.used', '1')
+            ->andWhere('v.id = :id')
+            ->setParameter('id', (string)$verification->id())
+            ->getQuery()
+            ->execute();
     }
 }
