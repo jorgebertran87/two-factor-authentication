@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Authenticator\Application;
 
+use DateTimeImmutable;
+
 final class CheckVerificationQuery
 {
     private string $id;

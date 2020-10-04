@@ -4,8 +4,12 @@ namespace App\Authenticator\Infrastructure\Doctrine;
 
 use App\Authenticator\Application\VerificationReadRepository;
 use App\Authenticator\Application\VerificationWriteRepository;
+use App\Authenticator\Domain\Code;
+use App\Authenticator\Domain\Id;
+use App\Authenticator\Domain\Phone;
 use App\Authenticator\Domain\Verification as DomainVerification;
 use App\Entity\Verification;
+use DateTimeImmutable;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -27,7 +31,7 @@ class VerificationRepository extends ServiceEntityRepository implements Verifica
         $result =  $this->createQueryBuilder('v')
             ->andWhere('v.id = :id')
             ->setParameter('id', $id)
-            ->orderBy('v.generated_at DESC')
+            ->orderBy('v.generatedAt', 'DESC')
             ->setMaxResults(1)
             ->getQuery()
             ->getResult();
@@ -42,10 +46,23 @@ class VerificationRepository extends ServiceEntityRepository implements Verifica
             ->andWhere('v.code = :code')
             ->setParameter('id', $id)
             ->setParameter('code', $code)
-            ->orderBy('v.generated_at DESC')
+            ->orderBy('v.generatedAt', 'DESC')
             ->setMaxResults(1)
             ->getQuery()
             ->getResult();
+
+
+
+        if (count($result) > 0) {
+            $row = $result[0];
+
+            $id = new Id($row->getId());
+            $generatedAt = DateTimeImmutable::createFromMutable($row->getGeneratedAt());
+            $code = new Code($row->getCode(), $generatedAt);
+            $phone = new Phone($row->getPhoneNumber());
+            $verification = new DomainVerification($id, $code, $phone);
+            return $verification;
+        }
 
         return null;
     }

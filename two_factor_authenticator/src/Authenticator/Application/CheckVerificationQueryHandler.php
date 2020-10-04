@@ -31,8 +31,10 @@ final class CheckVerificationQueryHandler implements QueryHandler
             return $verification;
         }
 
-        $this->codeValidator->validate($code);
         $verification = $this->verificationReadRepository->findByIdAndCode($query->id(), $code->value());
+        $code = $verification->code();
+        $this->codeValidator->validate($code);
+
         return $verification;
 
 

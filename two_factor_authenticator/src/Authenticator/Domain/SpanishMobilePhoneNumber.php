@@ -7,7 +7,6 @@ namespace App\Authenticator\Domain;
 final class SpanishMobilePhoneNumber
 {
     private const LENGTH = 9;
-    private const PREFIX = '+34';
     private const FIRST_DIGIT = '6';
 
     private string $number;
@@ -17,7 +16,7 @@ final class SpanishMobilePhoneNumber
         $number = $this->sanitize($number);
         $this->validate($number);
 
-        $this->number = self::PREFIX . $number;
+        $this->number = $number;
     }
 
     private function sanitize(string $number): string {
