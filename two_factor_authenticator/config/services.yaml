@@ -41,6 +41,6 @@ services:
         class: App\Authenticator\Application\CheckVerificationQueryHandler
         public: true
 
-    'RetrieveCodeQueryHandler':
-        class: App\Authenticator\Application\RetrieveCodeQueryHandler
+    'RetrieveVerificationQueryHandler':
+        class: App\Authenticator\Application\RetrieveVerificationQueryHandler
         public: true

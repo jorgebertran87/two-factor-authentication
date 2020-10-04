@@ -17,7 +17,7 @@ class CheckVerificationQueryHandlerTest extends TestCase
     /** @test */
     public function itShouldRetrieveAValidVerification() {
         $repository = new InMemoryVerificationReadRepository();
-        $verification = new FakeVerification();
+        $verification = FakeVerification::create();
         $repository->add($verification);
         $codeValidator = new FakeCodeValidator();
         $query = new CheckVerificationQuery('111111', 'code');

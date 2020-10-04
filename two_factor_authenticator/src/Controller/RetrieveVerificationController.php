@@ -2,14 +2,12 @@
 
 namespace App\Controller;
 
-use App\Authenticator\Application\QueryBus;
-use App\Authenticator\Application\RetrieveCodeQuery;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use App\Authenticator\Application\RetrieveVerificationQuery;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-class  RetrieveValidationController extends BaseController
+class  RetrieveVerificationController extends BaseController
 {
     /**
      * @Route("/verifications", name="api_retrieve_verification",  methods={"POST"})
@@ -24,7 +22,7 @@ class  RetrieveValidationController extends BaseController
                 true
             );
 
-            $query = new RetrieveCodeQuery($data['phoneNumber']);
+            $query = new RetrieveVerificationQuery($data['phoneNumber']);
 
             $verification = $this->bus->handle($query);
 

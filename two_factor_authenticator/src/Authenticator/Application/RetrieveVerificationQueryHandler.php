@@ -7,7 +7,7 @@ namespace App\Authenticator\Application;
 use App\Authenticator\Domain\Phone;
 use App\Authenticator\Domain\Verification;
 
-final class RetrieveCodeQueryHandler implements QueryHandler
+final class RetrieveVerificationQueryHandler implements QueryHandler
 {
     private VerificationWriteRepository $verificationWriteRepository;
     private IdGenerator $idGenerator;

@@ -16,7 +16,7 @@ class PhoneTest extends TestCase
     /** @test */
     public function itShouldReturnAValidPhone() {
         $validPhone = new Phone('611 11 11 11');
-        $this->assertEquals('+34611111111', $validPhone->number());
+        $this->assertEquals('611111111', $validPhone->number());
 
     }
     /** @test */

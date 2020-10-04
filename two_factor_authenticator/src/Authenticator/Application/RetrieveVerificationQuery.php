@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Authenticator\Application;
 
-final class RetrieveCodeQuery
+final class RetrieveVerificationQuery
 {
     private string $phoneNumber;
 

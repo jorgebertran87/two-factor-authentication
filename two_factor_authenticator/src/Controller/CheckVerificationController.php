@@ -4,12 +4,11 @@ namespace App\Controller;
 
 use App\Authenticator\Application\CheckVerificationQuery;
 use App\Authenticator\Application\ExpiredCodeException;
-use App\Authenticator\Application\RetrieveCodeQuery;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-class  CheckValidationController extends BaseController
+class  CheckVerificationController extends BaseController
 {
     /**
      * @Route("/verifications/{verificationId}", name="api_check_verification",  methods={"POST"})
