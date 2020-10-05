@@ -2,27 +2,17 @@
 
 namespace App\Command;
 
-use App\Authenticator\Application\QueryBus;
 use App\Authenticator\Application\RetrieveVerificationQuery;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class RetrieveVerificationCommand extends Command
+class RetrieveVerificationCommand extends AbstractCommand
 {
     protected static $defaultName = 'verification:retrieve';
 
-    private QueryBus $bus;
-
     private const PHONE_NUMBER_ARGUMENT = 'phoneNumber';
-
-    public function __construct(QueryBus $bus)
-    {
-        $this->bus = $bus;
-
-        parent::__construct();
-    }
 
     protected function configure()
     {
