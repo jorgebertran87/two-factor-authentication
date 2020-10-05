@@ -1,0 +1,107 @@
+openapi: 3.0.0
+info:
+  title: Two-factor authentication
+  description: This api allows a basic two-factor authentication.
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+
+paths:
+  /verifications:
+    post:
+      summary: Retrieves a verification id and a code to authenticate.
+      parameters:
+        - in: query
+          description: 'The phone number where sending the id and code'
+          name: phoneNumber
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':    # status code
+          description: 'The verification id and the code'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  verificationId:
+                    type: string
+                    example: '5f7b90d4837a8'
+                  code:
+                    description: A 4-size alphanumeric code
+                    type: string
+                    example: '2b60'
+        '400':
+          description: Invalid data sent
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: 'The data sent is invalid: phoneNumber is required'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: 'Server error'
+
+  /verifications/{id}:
+    post:
+      summary: Checks if the verification is valid.
+      parameters:
+        - in: path
+          name: id
+          description: The verification id
+          schema:
+            type: string
+          required: true
+        - in: query
+          description: The code previously sent to the phone number
+          name: code
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':    # status code
+          description: Returns if the verification is valid with a boolean, in this case with true
+          content:
+            application/json:
+              schema:
+                type: boolean
+                example: true
+        '400':
+          description: Invalid data sent
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: 'The data sent is invalid: code is required'
+        '404':
+          description: The verification failed (Expired code, Code not found, Invalid alphanumeric format for code)
+          content:
+            application/json:
+              schema:
+                type: boolean
+                example: false
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: 'Server error'
+
