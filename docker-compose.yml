@@ -1,4 +1,4 @@
-version: '2'
+version: '3.1'
 services:
     php:
         build: ./.docker/php
@@ -15,3 +15,9 @@ services:
             - ./.docker/nginx/log:/var/log/nginx
         depends_on:
             - php
+    client:
+        build: ./client
+        volumes:
+            - ./client:/app
+        ports:
+            - "8080:80"
