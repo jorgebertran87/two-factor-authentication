@@ -1,7 +1,7 @@
 FROM php:7.4-fpm-alpine
 
 RUN apk update \
-    && apk add  --no-cache git mysql-client curl libmcrypt libmcrypt-dev openssh-client icu-dev \
+    && apk add  --no-cache git mysql-client curl libmcrypt libmcrypt-dev openssh-client icu-dev sqlite \
     libxml2-dev freetype-dev libpng-dev libjpeg-turbo-dev g++ make autoconf libzip-dev \
     && docker-php-source extract \
     && pecl install xdebug redis \
@@ -15,8 +15,6 @@ RUN apk update \
     && echo "xdebug.remote_connect_back=0" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     #&& curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
     && rm -rf /tmp/*
-
-RUN apk add sqlite
 
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 

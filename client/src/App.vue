@@ -16,7 +16,7 @@
 </template>
 
 <script>
-const URL =  'http://0.0.0.0';
+const URL =  'http://0.0.0.0:8001';
 const VERIFICATIONS_ENDPOINT = URL + '/verifications';
 import axios from "axios";
 export default {
