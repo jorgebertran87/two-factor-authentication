@@ -2,7 +2,8 @@
   <div id="app">
     <form>
       <h3>Two-factor authenticator</h3>
-      <input style="width: 200px" v-model="phoneNumber" type="text" placeholder="Phone Number" /><br />
+      <input style="width: 100px" v-model="phoneNumber" type="text" placeholder="Phone Number" />
+      <input style="width: 100px" v-model="code" type="text" placeholder="Master code" /><br />
       <input style="width: 100px" type="button" @click="retrieveVerificationInfo" value="Retrieve" />
       <input style="width: 100px" type="button" @click="checkVerificationInfo" value="Check" /><br />
       <div style="border: solid 1px #ccc; padding: 10px; margin-top: 10px">
@@ -38,8 +39,8 @@ export default {
           const data = response.data;
           this.verificationId = data.verificationId;
           this.code = data.code;
-      }).catch((response) => {
-        alert(response.data.error);
+      }).catch((error) => {
+        alert(error.response.data);
       });
     },
     checkVerificationInfo() {
@@ -50,8 +51,8 @@ export default {
       const promise = axios.post(url, params);
       return promise.then((response) => {
           this.valid  = response.data;
-      }).catch((response) =>  {
-        this.valid  = response.data;
+      }).catch((error) =>  {
+        this.valid  = error.response.data;
       });
     }
   }

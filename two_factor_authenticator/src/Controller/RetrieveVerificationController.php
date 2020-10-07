@@ -42,9 +42,9 @@ class  RetrieveVerificationController extends BaseController
 
             return new JsonResponse(["verificationId" => (string)$verification->id(), "code" => $verification->code()->value()], 200);
         } catch (InvalidDataException $e) {
-            return new JsonResponse(["error" => $e->getMessage()], 400);
+            return new JsonResponse($e->getMessage(), 400);
         } catch (\Exception $e) {
-            return new JsonResponse(["error" => $e->getMessage()], 500);
+            return new JsonResponse($e->getMessage(), 500);
         }
 
 
