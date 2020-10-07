@@ -17,7 +17,5 @@ services:
             - php
     client:
         build: ./client
-        volumes:
-            - ./client:/app
         ports:
             - "8080:80"

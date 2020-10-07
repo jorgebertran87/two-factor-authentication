@@ -1,30 +1,58 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-      <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-      <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-    </ul>
+    <form>
+      <h3>Two-factor authenticator</h3>
+      <input style="width: 200px" v-model="phoneNumber" type="text" placeholder="Phone Number" /><br />
+      <input style="width: 100px" type="button" @click="retrieveVerificationInfo" value="Retrieve" />
+      <input style="width: 100px" type="button" @click="checkVerificationInfo" value="Check" /><br />
+      <div style="border: solid 1px #ccc; padding: 10px; margin-top: 10px">
+        <span><b>Verification Id:</b> {{verificationId}}</span><br />
+        <span><b>Code:</b> {{code}}</span><br />
+        <span><b>Valid:</b> {{valid ? 'Yes!' : ( valid === null ? '' : 'No!' )}}</span>
+      </div>
+    </form>
   </div>
 </template>
 
 <script>
+const URL =  'http://0.0.0.0';
+const VERIFICATIONS_ENDPOINT = URL + '/verifications';
+import axios from "axios";
 export default {
   name: 'app',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      phoneNumber: '',
+      verificationId: '',
+      code: '',
+      valid: null
+    }
+  },
+  methods: {
+    retrieveVerificationInfo() {
+      const params = {
+        phoneNumber: this.phoneNumber
+      };
+      const promise = axios.post(VERIFICATIONS_ENDPOINT, params);
+      return promise.then((response) => {
+          const data = response.data;
+          this.verificationId = data.verificationId;
+          this.code = data.code;
+      }).catch((response) => {
+        alert(response.data.error);
+      });
+    },
+    checkVerificationInfo() {
+      const url = VERIFICATIONS_ENDPOINT + '/' + this.verificationId;
+      const params = {
+        code: this.code
+      };
+      const promise = axios.post(url, params);
+      return promise.then((response) => {
+          this.valid  = response.data;
+      }).catch((response) =>  {
+        this.valid  = response.data;
+      });
     }
   }
 }
@@ -33,28 +61,19 @@ export default {
 <style>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin: 60px auto 0 auto;
+  width: 50%;
+  text-align: left;
 }
 
-h1, h2 {
-  font-weight: normal;
+input {
+  border: solid 1px;
+  padding: 5px;
+  margin-bottom: 5px
 }
 
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
+input[type=button] {
+  cursor: pointer;
 }
 </style>

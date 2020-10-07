@@ -28,6 +28,4 @@ USER 1000:1000
 
 COPY . .
 
-USER root:root
-
 EXPOSE 9000
