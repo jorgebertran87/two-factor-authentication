@@ -22,8 +22,6 @@ CMD ["php-fpm", "-F"]
 
 WORKDIR /var/www
 
-RUN composer install
-
 USER 1000:1000
 
 COPY . .

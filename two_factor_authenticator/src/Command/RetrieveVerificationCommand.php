@@ -30,7 +30,5 @@ class RetrieveVerificationCommand extends AbstractCommand
 
         $output->writeln('Verification ID: '. (string)$verification->id());
         $output->writeln('Code: '. (string)$verification->code()->value());
-
-        return Command::SUCCESS;
     }
 }

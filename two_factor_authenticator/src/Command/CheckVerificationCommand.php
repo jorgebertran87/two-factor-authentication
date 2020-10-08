@@ -36,11 +36,8 @@ class CheckVerificationCommand extends AbstractCommand
             $verification = $this->bus->handle($query);
 
             $output->writeln($verification ? 'You have access!' : self::OUTPUT_ACCESS_DENIED);
-            return Command::SUCCESS;
         } catch (\Exception $e) {
             $output->writeln($e->getMessage());
         }
-
-        return Command::FAILURE;
     }
 }
