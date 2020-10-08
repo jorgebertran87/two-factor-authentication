@@ -68,5 +68,5 @@ http://localhost:8081
 ## Documentation
 
 ```
-Open https://editor.swagger.io and paste the swagger.json content (located in root folder)
+Open https://editor.swagger.io and paste the swagger.yml content (located in root folder)
 ```
