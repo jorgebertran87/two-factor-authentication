@@ -15,7 +15,8 @@ use PHPUnit\Framework\TestCase;
 class RandomAlphanumericCodeValidatorTest extends TestCase
 {
     /** @test */
-    public function itShouldThrowInvalidCodeLengthException() {
+    public function itShouldThrowInvalidCodeLengthException()
+    {
         $code = new Code('AS24G6', new DateTimeImmutable());
         $codeValidator = new RandomAlphanumericCodeValidator();
 
@@ -24,7 +25,8 @@ class RandomAlphanumericCodeValidatorTest extends TestCase
     }
 
     /** @test */
-    public function itShouldThrowExpiredCodeException() {
+    public function itShouldThrowExpiredCodeException()
+    {
         $now = new DateTimeImmutable();
         $expiredDateTime = $this->substractSeconds($now, RandomAlphanumericCodeValidator::EXPIRES_IN_SECONDS + 1);
 

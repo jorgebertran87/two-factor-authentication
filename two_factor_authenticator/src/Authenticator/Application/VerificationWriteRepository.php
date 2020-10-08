@@ -2,7 +2,6 @@
 
 namespace App\Authenticator\Application;
 
-use App\Authenticator\Domain\Id;
 use App\Authenticator\Domain\Verification;
 
 interface VerificationWriteRepository

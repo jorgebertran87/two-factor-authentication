@@ -14,7 +14,8 @@ final class RandomAlphanumericCodeValidator implements CodeValidator
 
     private const LENGTH = 4;
 
-    public function validate(Code $code): void {
+    public function validate(Code $code): void
+    {
         $codeLength = strlen($code->value());
         if ($codeLength !== self::LENGTH) {
             throw InvalidCodeLengthException::create($code->value(), $codeLength);
@@ -23,7 +24,7 @@ final class RandomAlphanumericCodeValidator implements CodeValidator
         $now = new DateTimeImmutable();
         $limitDateTime = $this->substractSeconds($now, SELF::EXPIRES_IN_SECONDS);
 
-        if ($code->generatedAt() < $limitDateTime ) {
+        if ($code->generatedAt() < $limitDateTime) {
             throw ExpiredCodeException::create($code->value());
         }
 

@@ -21,7 +21,6 @@ final class CheckVerificationQueryHandler implements QueryHandler
         $this->verificationReadRepository = $verificationReadRepository;
         $this->verificationWriteRepository = $verificationWriteRepository;
         $this->codeValidator = $codeValidator;
-
     }
 
     public function handle($query)
@@ -44,7 +43,5 @@ final class CheckVerificationQueryHandler implements QueryHandler
         $this->codeValidator->validate($code);
 
         return $verification;
-
-
     }
 }

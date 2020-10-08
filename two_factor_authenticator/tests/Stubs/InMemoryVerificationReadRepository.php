@@ -7,8 +7,8 @@ namespace Tests\Stubs;
 use App\Authenticator\Application\VerificationReadRepository;
 use App\Authenticator\Domain\Verification;
 
-final class InMemoryVerificationReadRepository implements VerificationReadRepository {
-
+final class InMemoryVerificationReadRepository implements VerificationReadRepository
+{
     private array $verifications;
 
     public function findById(string $id): ?Verification
@@ -21,7 +21,8 @@ final class InMemoryVerificationReadRepository implements VerificationReadReposi
         return $this->verifications[0];
     }
 
-    public function add(Verification $verification): void {
+    public function add(Verification $verification): void
+    {
         $this->verifications[] = $verification;
     }
 }

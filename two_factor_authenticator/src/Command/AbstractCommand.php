@@ -5,7 +5,6 @@ namespace App\Command;
 use App\Authenticator\Application\QueryBus;
 use Symfony\Component\Console\Command\Command;
 
-
 abstract class AbstractCommand extends Command
 {
     protected QueryBus $bus;

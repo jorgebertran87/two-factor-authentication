@@ -8,7 +8,8 @@ use Exception;
 
 final class InvalidAlphanumericFormatException extends Exception
 {
-    public static function create(string $code): self {
+    public static function create(string $code): self
+    {
         return new static("The code $code is not alphanumeric");
     }
 }

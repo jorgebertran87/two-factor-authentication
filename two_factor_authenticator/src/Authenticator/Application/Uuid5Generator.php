@@ -12,7 +12,8 @@ final class Uuid5Generator implements IdGenerator
 
     private const PERMITTED_CHARS = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
-    public function generate(): Id {
+    public function generate(): Id
+    {
         $uuid = \uniqid();
 
         return new Id($uuid);

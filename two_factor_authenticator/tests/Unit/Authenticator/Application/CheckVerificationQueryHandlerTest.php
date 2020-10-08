@@ -16,7 +16,8 @@ use Tests\Stubs\InMemoryVerificationReadRepository;
 class CheckVerificationQueryHandlerTest extends TestCase
 {
     /** @test */
-    public function itShouldRetrieveAValidVerification() {
+    public function itShouldRetrieveAValidVerification()
+    {
         $readRepository = new InMemoryVerificationReadRepository();
         $writeRepository = new FakeVerificationWriteRepository();
         $verification = FakeVerification::create();

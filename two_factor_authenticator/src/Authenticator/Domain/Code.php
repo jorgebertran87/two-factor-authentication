@@ -21,7 +21,8 @@ final class Code
         $this->generatedAt = $generatedAt;
     }
 
-    private function isAlphanumeric(string $value): bool {
+    private function isAlphanumeric(string $value): bool
+    {
         return ctype_alnum($value);
     }
 

@@ -10,7 +10,8 @@ use PHPUnit\Framework\TestCase;
 class RandomAlphanumericCodeGeneratorTest extends TestCase
 {
     /** @test */
-    public function itShouldGenerateAValidRandomAlphanumericCode() {
+    public function itShouldGenerateAValidRandomAlphanumericCode()
+    {
         $codeGenerator = new RandomAlphanumericCodeGenerator();
         $code = $codeGenerator->generate();
         $this->assertEquals(RandomAlphanumericCodeGenerator::LENGTH, strlen($code->value()));

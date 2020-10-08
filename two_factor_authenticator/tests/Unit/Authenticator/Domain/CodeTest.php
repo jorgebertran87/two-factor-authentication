@@ -12,7 +12,8 @@ use PHPUnit\Framework\TestCase;
 class CodeTest extends TestCase
 {
     /** @test */
-    public function itShouldGenerateAValidRandomAlphanumericCode() {
+    public function itShouldGenerateAValidRandomAlphanumericCode()
+    {
         $this->expectException(InvalidAlphanumericFormatException::class);
         $invalidCode = new Code('_asds1', new DateTimeImmutable());
     }

@@ -8,7 +8,8 @@ use Exception;
 
 final class InvalidSpanishMobilePhoneNumberException extends Exception
 {
-    public static function create(string $number): self {
+    public static function create(string $number): self
+    {
         return new static("The phone number $number is not a valid spanish mobile");
     }
 }
