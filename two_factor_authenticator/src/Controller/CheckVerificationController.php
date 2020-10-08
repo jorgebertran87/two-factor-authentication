@@ -46,9 +46,9 @@ class CheckVerificationController extends BaseController
         } catch (ExpiredCodeException | CodeNotFoundException | InvalidAlphanumericFormatException $e) {
             return new JsonResponse(false, 404);
         } catch (InvalidDataException $e) {
-            return new JsonResponse(["error" => $e->getMessage()], 400);
+            return new JsonResponse($e->getMessage(), 400);
         } catch (\Exception $e) {
-            return new JsonResponse(["error" => $e->getMessage()], 500);
+            return new JsonResponse($e->getMessage(), 500);
         }
     }
 }

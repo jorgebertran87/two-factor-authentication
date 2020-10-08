@@ -37,21 +37,15 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-                    example: 'The data sent is invalid: phoneNumber is required'
+                type: string
+                example: 'The data sent is invalid: phoneNumber is required'
         '500':
           description: Server error
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-                    example: 'Server error'
+                type: string
+                example: 'Server error'
 
   /verifications/{id}:
     post:
@@ -82,11 +76,8 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-                    example: 'The data sent is invalid: code is required'
+                type: string
+                example: 'The data sent is invalid: code is required'
         '404':
           description: The verification failed (Expired code, Code not found, Invalid alphanumeric format for code)
           content:
@@ -99,9 +90,6 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-                    example: 'Server error'
+                type: string
+                example: 'Server error'
 
