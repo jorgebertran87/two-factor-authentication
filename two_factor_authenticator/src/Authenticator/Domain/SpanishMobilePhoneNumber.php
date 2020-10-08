@@ -19,11 +19,13 @@ final class SpanishMobilePhoneNumber
         $this->number = $number;
     }
 
-    private function sanitize(string $number): string {
+    private function sanitize(string $number): string
+    {
         return str_replace("-", "", (filter_var($number, FILTER_SANITIZE_NUMBER_INT)));
     }
 
-    private function validate(string $number): void {
+    private function validate(string $number): void
+    {
         if (strlen($number) !== self::LENGTH) {
             throw InvalidSpanishMobilePhoneNumberException::create($number);
         }
@@ -33,7 +35,8 @@ final class SpanishMobilePhoneNumber
         }
     }
 
-    public function number(): string {
+    public function number(): string
+    {
         return $this->number;
     }
 }

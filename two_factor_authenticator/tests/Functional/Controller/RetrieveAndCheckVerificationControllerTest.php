@@ -11,7 +11,8 @@ class RetrieveAndCheckVerificationControllerTest extends WebTestCase
 {
     private KernelBrowser $client;
 
-    protected function setUp(): void {
+    protected function setUp(): void
+    {
         $this->client = static::createClient();
         exec('bin/console doctrine:migrations:migrate -n --env=test');
         parent::setUp();
@@ -27,7 +28,8 @@ class RetrieveAndCheckVerificationControllerTest extends WebTestCase
         $this->itShouldCheckTheVerificationInfo($content->verificationId, $content->code);
     }
 
-    public function itShouldReturnTheVerificationInfo(): stdClass {
+    public function itShouldReturnTheVerificationInfo(): stdClass
+    {
         $response = $this->getResponseFromRequest('verifications', '{"phoneNumber":"611 11 11 11"}');
         $this->assertEquals(200, $response->getStatusCode());
 
@@ -36,7 +38,8 @@ class RetrieveAndCheckVerificationControllerTest extends WebTestCase
         return $content;
     }
 
-    public function itShouldCheckTheVerificationInfo(string $verificationId, string $code): void {
+    public function itShouldCheckTheVerificationInfo(string $verificationId, string $code): void
+    {
         $response = $this->getResponseFromRequest('verifications/'.$verificationId, '{"code":"'.$code.'"}');
 
         $this->assertEquals(200, $response->getStatusCode());
@@ -48,7 +51,8 @@ class RetrieveAndCheckVerificationControllerTest extends WebTestCase
 
 
 
-    private function getResponseFromRequest(string $endpoint, string $data): JsonResponse {
+    private function getResponseFromRequest(string $endpoint, string $data): JsonResponse
+    {
         $this->client->request(
             'POST',
             '/'.$endpoint,

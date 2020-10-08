@@ -13,7 +13,8 @@ final class RetrieveVerificationQuery
         $this->phoneNumber = $phoneNumber;
     }
 
-    public function phoneNumber(): string {
+    public function phoneNumber(): string
+    {
         return $this->phoneNumber;
     }
 }

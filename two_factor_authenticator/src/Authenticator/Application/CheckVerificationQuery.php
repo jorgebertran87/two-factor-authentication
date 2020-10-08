@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Authenticator\Application;
 
-use DateTimeImmutable;
 
 final class CheckVerificationQuery
 {
@@ -17,11 +16,13 @@ final class CheckVerificationQuery
         $this->code = $code;
     }
 
-    public function id(): string {
+    public function id(): string
+    {
         return $this->id;
     }
 
-    public function code(): string {
+    public function code(): string
+    {
         return $this->code;
     }
 }

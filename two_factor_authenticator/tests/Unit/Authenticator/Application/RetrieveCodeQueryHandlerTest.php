@@ -5,7 +5,6 @@ declare(strict_types = 1);
 namespace Tests\Unit\Authenticator\Application;
 
 use App\Authenticator\Application\RandomAlphanumericCodeGenerator;
-use App\Authenticator\Application\RetrieveCodeQueryHandler;
 use App\Authenticator\Application\RetrieveVerificationQuery;
 use App\Authenticator\Application\RetrieveVerificationQueryHandler;
 use App\Authenticator\Application\Uuid5Generator;
@@ -16,7 +15,8 @@ use Tests\Stubs\FakeVerificationWriteRepository;
 class RetrieveCodeQueryHandlerTest extends TestCase
 {
     /** @test */
-    public function itShouldRetrieveAValidVerification() {
+    public function itShouldRetrieveAValidVerification()
+    {
         $repository = new FakeVerificationWriteRepository();
         $idGenerator = new Uuid5Generator();
         $codeGenerator = new RandomAlphanumericCodeGenerator();

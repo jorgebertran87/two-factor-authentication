@@ -10,11 +10,11 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-class  RetrieveVerificationController extends BaseController
+class RetrieveVerificationController extends BaseController
 {
     private RetrieveVerificationDataValidator $dataValidator;
 
-    public function __construct( QueryBus $bus, RetrieveVerificationDataValidator $dataValidator)
+    public function __construct(QueryBus $bus, RetrieveVerificationDataValidator $dataValidator)
     {
         $this->dataValidator = $dataValidator;
 
@@ -28,7 +28,7 @@ class  RetrieveVerificationController extends BaseController
      */
     public function handle(Request $request)
     {
-        try  {
+        try {
             $data = json_decode(
                 $request->getContent(),
                 true
@@ -46,7 +46,5 @@ class  RetrieveVerificationController extends BaseController
         } catch (\Exception $e) {
             return new JsonResponse($e->getMessage(), 500);
         }
-
-
     }
 }
