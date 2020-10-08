@@ -37,13 +37,13 @@ docker exec -it --user=root two-factor-authentication_php_1 sh
 ### Run unit tests
 
 ```
-docker-compose exec php ./vendor/bin/phpunit tests/Unit
+docker-compose exec --user=root php ./vendor/bin/phpunit tests/Unit
 ```
 
 ### Run functional tests
 
 ```
-docker-compose exec php ./vendor/bin/phpunit tests/Functional
+docker-compose exec --user=root php ./vendor/bin/phpunit tests/Functional
 ```
 ## CLI (Symfony commands)
 
