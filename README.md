@@ -64,3 +64,9 @@ docker-compose exec php php bin/console verification:check 5f7e56b01c8ff OKQS (<
 ```
 http://localhost:8081
 ```
+
+## Documentation
+
+```
+Open https://editor.swagger.io and paste the swagger.json content (located in root folder)
+```
