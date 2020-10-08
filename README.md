@@ -15,33 +15,48 @@ docker-compose exec --user=root php composer install
 ### Run Doctrine migtrations
 
 ```
-docker-compose exec --user=root php php bin/console doctrine:migrations:migrate
+docker-compose exec php php bin/console doctrine:migrations:migrate
 ```
+
+### Create production environment
+
+```
+docker-compose exec php composer dump-env prod
+```
+
+### Change the MASTER_CODE env
+
+Access to the container and change the MASTER_CODE in environment (env.local.php) (it can be alphanumeric with unlimited size)
+
+```
+docker exec -it two-factor-authentication_php_1 sh
+```
+
 ## Tests
 
 ### Run unit tests
 
 ```
-docker-compose exec --user=root php ./vendor/bin/phpunit tests/Unit
+docker-compose exec php ./vendor/bin/phpunit tests/Unit
 ```
 
 ### Run functional tests
 
 ```
-docker-compose exec --user=root php ./vendor/bin/phpunit tests/Functional
+docker-compose exec php ./vendor/bin/phpunit tests/Functional
 ```
 ## CLI (Symfony commands)
 
-##  Retrieve the Versification info
+###  Retrieve the Versification info
 
 ```
-docker-compose exec --user=root php php bin/console verification:retrieve '611 11 11 11' (<phoneNumber>)
+docker-compose exec php php bin/console verification:retrieve '611 11 11 11' (<phoneNumber>)
 ```
 
-##  Check the verification info
+### Check the verification info
 
 ```
-docker-compose exec --user=root php php bin/console verification:check 5f7e56b01c8ff OKQS (<verificationId> <code|masterCode>)
+docker-compose exec php php bin/console verification:check 5f7e56b01c8ff OKQS (<verificationId> <code|masterCode>)
 ```
 
 ## Access to the web client (a simple Vue app)
