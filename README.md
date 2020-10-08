@@ -21,7 +21,7 @@ docker-compose exec php php bin/console doctrine:migrations:migrate
 ### Create production environment
 
 ```
-docker-compose exec php composer dump-env prod
+docker-compose exec --user=root php composer dump-env prod
 ```
 
 ### Change the MASTER_CODE env
@@ -29,7 +29,7 @@ docker-compose exec php composer dump-env prod
 Access to the container and change the MASTER_CODE in environment (env.local.php) (it can be alphanumeric with unlimited size)
 
 ```
-docker exec -it two-factor-authentication_php_1 sh
+docker exec -it --user=root two-factor-authentication_php_1 sh
 ```
 
 ## Tests
