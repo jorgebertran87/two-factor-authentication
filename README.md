@@ -41,7 +41,7 @@ docker-compose exec --user=root php php bin/console verification:retrieve '611 1
 ##  Check the verification info
 
 ```
-docker-compose exec --user=root php php bin/console verification:retrieve '611 11 11 11' (<phoneNumber>)
+docker-compose exec --user=root php php bin/console verification:check 5f7e56b01c8ff OKQS (<verificationId> <code|masterCode>)
 ```
 
 ## Access to the web client (a simple Vue app)
