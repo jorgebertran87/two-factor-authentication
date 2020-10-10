@@ -25,7 +25,6 @@ class VerificationRepository extends ServiceEntityRepository implements Verifica
     {
         $result =  $this->createQueryBuilder('v')
             ->andWhere('v.id = :id')
-            ->andWhere('v.used IS NULL')
             ->setParameter('id', $id)
             ->orderBy('v.generatedAt', 'DESC')
             ->setMaxResults(1)
