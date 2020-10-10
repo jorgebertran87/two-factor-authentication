@@ -37,6 +37,17 @@ class VerificationRepository extends ServiceEntityRepository implements Verifica
             ->getQuery()
             ->getResult();
 
+        if (count($result) > 0) {
+            $row = $result[0];
+
+            $id = new Id($row->getId());
+            $generatedAt = DateTimeImmutable::createFromMutable($row->getGeneratedAt());
+            $code = new Code($row->getCode(), $generatedAt);
+            $phone = new Phone($row->getPhoneNumber());
+            $verification = new DomainVerification($id, $code, $phone);
+            return $verification;
+        }
+
         return null;
     }
 
@@ -52,8 +63,6 @@ class VerificationRepository extends ServiceEntityRepository implements Verifica
             ->setMaxResults(1)
             ->getQuery()
             ->getResult();
-
-
 
         if (count($result) > 0) {
             $row = $result[0];
