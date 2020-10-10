@@ -27,7 +27,7 @@ final class CheckVerificationQueryHandler implements QueryHandler
     {
         $now = new DateTimeImmutable();
         $code = new Code($query->code(), $now);
-
+        
         if ($code->isMaster()) {
             $verification = $this->verificationReadRepository->findById($query->id());
             return $verification;
@@ -38,9 +38,9 @@ final class CheckVerificationQueryHandler implements QueryHandler
             throw CodeNotFoundException::create($query->code());
         }
 
-        $this->verificationWriteRepository->markAsUsed($verification);
         $code = $verification->code();
         $this->codeValidator->validate($code);
+        $this->verificationWriteRepository->markAsUsed($verification);
 
         return $verification;
     }
